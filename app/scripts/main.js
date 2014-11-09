@@ -10,3 +10,7 @@ $( 'body' ).keydown(function( event ) {
   	$(this).removeClass().addClass( states[ currentSectionIndex ] );
   }
 });
+
+$('#start-button').click(function(event){
+	$('body').removeClass().addClass('play');
+})

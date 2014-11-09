@@ -1,6 +1,11 @@
 $intro-main-color: #66cac9;
+$intro-bold-color: #1d8685;
+
 $play-main-color: #fdbd17;
 $who-main-color: #fd174d;
+
+$text-size-title: 90pt;
+$text-size-cta: 80pt;
 
 $sawtooth-height: 5vh;
 
@@ -18,4 +23,51 @@ $sawtooth-height: 5vh;
     display: block;
     position: absolute;
     bottom: 0 - $size;
+}
+
+@mixin frame-button( $foreground-color, $background-color, $over-color ){
+
+    text-align: center;
+    
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    /* Label */
+
+    span {
+        cursor: pointer;
+        cursor: hand;
+
+        background-color: $background-color;
+        font-size: $text-size-cta;
+        line-height: 1.1;
+        padding: 0 20px;
+        color: $foreground-color;
+
+        &:hover {
+            background-color: $over-color;
+            color: $background-color;
+        }
+    }
+
+    /* Bars */
+
+    &:before, &:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 49%;
+        height: 3px;
+        content: '\a0';
+        background-color: $background-color;
+    }
+    &:before {
+        margin-left: -50%;
+        text-align: right;
+    }
+    &:after {
+        margin-left: 1%;
+        text-align: right;
+    }
 }
