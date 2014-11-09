@@ -1,0 +1,86 @@
+@import "compass/reset";
+@import "_base";
+@import "compass/css3";
+
+body {
+	background: #000000;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
+	overflow: hidden;
+
+	&.intro {
+		margin-top: 0 - (100vh*0) - ($sawtooth-height*0);
+	}
+
+	&.play {
+		margin-top: 0 - (100vh*1) - ($sawtooth-height*1);
+	}
+
+	&.who {
+		margin-top: 0 - (100vh*2) - ($sawtooth-height*2);
+	}
+
+	@include transition-property(margin-top);
+	@include transition-duration(0.65s);
+	@include transition-timing-function(ease-in-out);
+
+}
+
+section {
+	height:100vh;
+ 	width:100vw;
+ 	// padding-top:50px;
+ 	position: relative;
+}
+
+#intro {
+	background-color: $intro-main-color;	
+	&:after {
+		content: " ";
+		z-index: 200;
+		@include sawtooth( $sawtooth-height, $intro-main-color );
+	}
+}
+
+#play {
+	background-color: $play-main-color;	
+	height:100vh + ($sawtooth-height*2);
+	&:before {
+		content: " ";
+		height: $sawtooth-height;
+		width: 100%;
+		display: block;
+	}
+	&:after {
+		content: " ";
+		z-index: 100;
+		@include sawtooth( $sawtooth-height, $play-main-color );
+	}
+}
+
+#who {
+	background-color: $who-main-color;
+}
+
+.hero-unit {	
+  margin: 0px auto 0 auto;
+  width: 300px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 60px;
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
