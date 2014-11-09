@@ -79,6 +79,9 @@ h1 {
 .big-button {
 
 	@include frame-button( $intro-main-color, #FFFFFF, $intro-bold-color );
+	position:absolute;
+	bottom: 5px;
+	width: 100%;
 }
 
 /** INTRO **/
@@ -110,16 +113,18 @@ h1 {
 }
 
 #instructions {		
-
-	position: relative;
+	position: absolute;
 	width: 100%;
+	@include vertical-align();
 	@include display-flex;
 	justify-content: center;
 
-	li img {
-		max-width: 20vw;		
+	img {
+		height: 50vh;
+		max-height: 468px;
 	}
 
+	padding-top: 30px;
 }
 
 
