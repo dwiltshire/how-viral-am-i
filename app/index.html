@@ -14,7 +14,7 @@
     <!-- build:css(.tmp) styles/screen.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nunito|Titillium+Web:700,900' rel='stylesheet' type='text/css'>
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -36,7 +36,8 @@
     </section>
 
     <section id="play">
-      <h1><span class="speech-bubble">How Viral Am I?</span></h1>
+      <div id="who-button" class="label-button"><span>Who made this?</span></div>
+      <h1 id="play-title"><span class="bubble">How Viral Am I?</span></h1>
       <div id="game-container">
         <div id="video-container">
           <div id="player"></div> 
@@ -44,30 +45,30 @@
         <div id="controls">
           <div id="scores">
             <div id="right" class="score-box">
-              <div class="score-counter">0</div>
-              <div class="score-label">Right</div>
+              <div class="counter">00</div>
+              <div class="label">Right!</div>
             </div>
             <div id="wrong" class="score-box">
-              <div class="score-counter">0</div>
-              <div class="score-label">Wrong</div>
+              <div class="counter">00</div>
+              <div class="label">Wrong!</div>
             </div>      
           </div>
           <div id="answers">
             <ul>
               <li>
-                <div id="option1" class="answer"><span class="answer-marker">a</span><span class="number"></span></div>
+                <div id="option1" class="answer"><span class="marker">a</span><span class="number">100,000,000</span></div>
               </li>
               <li>
-                <div id="option2" class="answer"><span class="answer-marker">b</span><span class="number"></span></div>
+                <div id="option2" class="answer selected correct"><span class="marker">b</span><span class="number">100,000</span></div>
               </li>
               <li>
-                <div id="option3" class="answer"><span class="answer-marker">c</span><span class="number"></span></div>
+                <div id="option3" class="answer correct"><span class="marker">c</span><span class="number">1,000</span></div>
               </li>
               <li>
-                <div id="option4" class="answer"><span class="answer-marker">d</span><span class="number"></span></div>
+                <div id="option4" class="answer"><span class="marker">d</span><span class="number">100</span></div>
               </li>
             </ul>
-            <div id="next-button" class="big-button"><span class="label">Next Viral</span></div>
+            <div id="next-button"><span class="label">Next Viral</span></div>
           </div>        
         </div>
       </div>

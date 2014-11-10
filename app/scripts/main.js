@@ -14,3 +14,7 @@ $( 'body' ).keydown(function( event ) {
 $('#start-button').click(function(event){
 	$('body').removeClass().addClass('play');
 })
+
+$('#who-button').click(function(event){
+	$('body').removeClass().addClass('who');
+})

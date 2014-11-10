@@ -2,6 +2,10 @@ $intro-main-color: #66cac9;
 $intro-bold-color: #1d8685;
 
 $play-main-color: #fdbd17;
+$play-secondary-color: #ad8006;
+$play-bold-color: #e5a90d;
+
+
 $who-main-color: #fd174d;
 
 $text-size-title: 90pt;
@@ -25,7 +29,7 @@ $sawtooth-height: 5vh;
     bottom: 0 - $size;
 }
 
-@mixin frame-button( $foreground-color, $background-color, $over-color ){
+@mixin frame-button( $foreground-color, $background-color, $over-color, $text-size ){
 
     text-align: center;
     
@@ -40,7 +44,8 @@ $sawtooth-height: 5vh;
         cursor: hand;
 
         background-color: $background-color;
-        font-size: $text-size-cta;
+        font-size: $text-size;
+        font-weight: 900;
         line-height: 1.1;
         padding: 0 20px;
         color: $foreground-color;
@@ -51,8 +56,9 @@ $sawtooth-height: 5vh;
         }
     }
 
-    /* Bars */
+}
 
+@mixin horizontal-bars( $color ) {
     &:before, &:after {
         position: absolute;
         top: 51%;
@@ -60,7 +66,7 @@ $sawtooth-height: 5vh;
         width: 49%;
         height: 3px;
         content: '\a0';
-        background-color: $background-color;
+        background-color: $color;
     }
     &:before {
         margin-left: -50%;
@@ -77,4 +83,56 @@ $sawtooth-height: 5vh;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+@mixin speech-bubble( $tail-image, $tail-width, $tail-height, $tail-left, $tail-bottom ) {
+    background-color: white;
+    @include border-radius(70px);
+    padding: 40px 45px 45px 60px;
+    margin: 20px 20px;
+    line-height: 65px;
+    
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    z-index: 5;
+
+    &:after{
+        content: "";
+        position: absolute;
+        bottom: $tail-bottom;
+        left: $tail-left;
+        z-index: -100;
+        background-image: $tail-image;
+        background-size: 100%;
+        width: $tail-width;
+        height: $tail-height;
+    }
+}
+
+@mixin icon-button( $icon-image, $width, $height, $top, $left ){
+    span {
+
+        font-size: 16pt;
+        font-weight: 700;
+        cursor: pointer;
+        cursor: hand;
+
+        &:after {
+            content: "";
+            background-image: $icon-image;
+            width: $width;
+            height: $height;
+
+            position: absolute;
+            margin: $top $left;
+        }
+
+        &:hover {
+            color: #FFFFFF;
+            &:after {
+                background-position: (0-$width) 0px;
+            }
+        }
+    }
 }
