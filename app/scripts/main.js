@@ -18,3 +18,7 @@ $('#start-button').click(function(event){
 $('#who-button').click(function(event){
 	$('body').removeClass().addClass('who');
 })
+
+$('#return-button').click(function(event){
+	$('body').removeClass().addClass('play');
+})
