@@ -27,22 +27,25 @@
 
     <section id="intro">      
 
-      <div class="section-content">
-        <h1 id="intro-title" class="bubble">How Viral Am I?</h1>
+      <h1 id="intro-title" class="bubble">How Viral Am I?</h1>
+
+      <div class="section-content">        
         <ul id="instructions">        
             <li><img src="images/sections/intro-watch-full.png" alt="Watch"></li>
             <li><img src="images/sections/intro-guess-full.png" alt="Guess"></li>
             <li><img src="images/sections/intro-prove-full.png" alt="Prove"></li>
-        </ul>
-        <div id="start-button" class="big-button"><span>PLAY!</span></div>
+        </ul>        
       </div>
+
+      <div id="start-button" class="big-button"><span>PLAY!</span></div>
+
     </section>
 
     <section id="play">      
 
+      <div id="who-button" class="label-button"><span>Who made this?</span></div>
+
       <div class="section-content">
-        
-        <div id="who-button" class="label-button"><span>Who made this?</span></div>
 
         <h1 id="play-title"><span class="bubble">How Viral Am I?</span></h1>
         <div id="game-container">
@@ -66,10 +69,10 @@
                   <div id="option1" class="answer"><span class="marker">a</span><span class="number">100,000,000</span></div>
                 </li>
                 <li>
-                  <div id="option2" class="answer selected correct"><span class="marker">b</span><span class="number">100,000</span></div>
+                  <div id="option2" class="answer"><span class="marker">b</span><span class="number">100,000</span></div>
                 </li>
                 <li>
-                  <div id="option3" class="answer correct"><span class="marker">c</span><span class="number">1,000</span></div>
+                  <div id="option3" class="answer"><span class="marker">c</span><span class="number">1,000</span></div>
                 </li>
                 <li>
                   <div id="option4" class="answer"><span class="marker">d</span><span class="number">100</span></div>
@@ -90,9 +93,10 @@
 
     <section id="who">
 
-      <div class="section-content">
+      <div id="return-button" class="label-button"><span>Return to the game</span></div>      
 
-        <div id="return-button" class="label-button"><span>Return to the game</span></div>
+      <div class="section-content">        
+
         <h1>WHO MADE THIS?</h1>
         
         <div class="creators">
@@ -143,8 +147,8 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
