@@ -38,6 +38,10 @@ before_script:
 script:
     # We want to gate on passing tests and a successful build
     - bower install
+    # See https://github.com/yeoman/generator-webapp/issues/348
+    - cd test
+    - bower install
+    - cd ../
     - grunt
 after_success:
     # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
