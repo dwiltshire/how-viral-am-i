@@ -2,10 +2,18 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>how viral am i</title>
+    <title>How Viral Am I?</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
+    <meta property="og:title" content="How Viral Am I?" />
+    <meta property="og:site_name" content="How Viral Am I"/>
+    <meta property="og:url" content="dwiltshire.github.io/how-viral-am-i/" />
+    <meta property="og:description" content="" />
+    <meta property="fb:app_id" content="1374671149511443" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://dwiltshire.github.io/how-viral-am-i/images/sharing/HVAI_share_1024x1024" />
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -15,6 +23,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Nunito|Titillium+Web:700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -83,9 +92,13 @@
           </div>
         </div>
 
-        <div id="" class="share-button"><span>SHARE YOUR SCORE!</span></div>
-        <div id="" class="share-button icon twitter"><span></span></div>
-        <div id="" class="share-button icon facebook"><span></span></div>
+        <div id="share-generic-button" class="share-button"><span>SHARE YOUR SCORE!</span></div>
+        <div id="share-twitter-button" class="share-button icon twitter">
+          <span class="fa fa-twitter"></span>
+        </div>
+        <div id="share-facebook-button" class="share-button icon facebook">
+          <span class="fa fa-facebook-official"></span>
+        </div>
 
       </div>
 
@@ -151,6 +164,15 @@
         <script src="bower_components/requirejs/require.js"></script>
         <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1374671149511443&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 </body>
 </html>

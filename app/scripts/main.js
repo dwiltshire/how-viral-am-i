@@ -9,6 +9,33 @@ define( 'main', [
     'jquery'], 
   function(SimpleYouTubePlayer, YouTubeDataLoader, YouTubePlaylistLoader, $) {
 
+    var rightScore = 0;
+    var wrongScore = 0;
+
+    var correctAnswerNumber;
+    var nextViralTimer;
+
+    var player
+
+    var twitterShareUrl = [
+          'https://twitter.com/intent/tweet?text=',
+          generateShareMessage(rightScore, rightScore+wrongScore),
+          '&url=',
+          window.location.href
+      ].join('');
+
+    var facebookShareUrl = [
+      'https://www.facebook.com/dialog/feed?',
+      'app_id=1374671149511443',
+      '&display=popup',
+      '&caption=',
+      '&link=',
+      window.location.href,
+      generateShareMessage(rightScore, rightScore+wrongScore),
+      '&redirect_uri=',
+      window.location.href
+    ].join('');
+
     // Navigation
   	$('#start-button').click(function(){
   		$('body').removeClass().addClass('play');
@@ -22,15 +49,31 @@ define( 'main', [
   		$('body').removeClass().addClass('play');
   	});
 
-    
-    // Gameplay
-    var rightScore = 0;
-    var wrongScore = 0;
+    // Sharing
+    $('#share-generic-button').click(shareFacebook);
+    $('#share-facebook-button').click(shareFacebook);
+    $('#share-twitter-button').click(shareTwitter);
 
-    var correctAnswerNumber;
-    var nextViralTimer;
+    function shareFacebook(){
+      window.FB.ui({
+        method: 'feed',
+        link: window.location.href,
+        caption: generateShareMessage(rightScore, rightScore+wrongScore),
+      }, function(response){});
+    }
 
-    var player = new SimpleYouTubePlayer( 'player', 549, 333 );
+    function shareTwitter(){
+      var twitterShareUrl = [
+          'https://twitter.com/intent/tweet?text=',
+          generateShareMessage(rightScore, rightScore+wrongScore),
+          '&url=',
+          window.location.href
+      ].join('');
+      window.open( twitterShareUrl, '_blank' );      
+    }
+
+    // Gameplay    
+    player = new SimpleYouTubePlayer( 'player', 549, 333 );
     $(player).bind( SimpleYouTubePlayer.READY, function(){ 
       initAudio();
     });
@@ -141,6 +184,11 @@ define( 'main', [
         val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
       }
       return val;
+    }
+
+    function generateShareMessage(numCorrect, total)
+    {
+      return 'I got ' + numCorrect + '/' + total + ' in \'How Viral Am I\'! Can you beat that?';
     }
 
     return this;
