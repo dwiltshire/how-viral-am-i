@@ -373,9 +373,29 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    requirejs: {
+      build: {
+        options: {
+
+          baseUrl: '<%= config.app %>/scripts',
+          optimize: 'none',
+          // TODO: Figure out how to make sourcemaps work with grunt-usemin
+          // https://github.com/yeoman/grunt-usemin/issues/30
+          //generateSourceMaps: true,
+          // required to support SourceMaps
+          // http://requirejs.org/docs/errors.html#sourcemapcomments          
+          useStrict: true,
+          wrap: true,
+          include: ['main'],
+          almond: true,
+          name: '../../bower_components/almond/almond',
+          out: '<%= config.dist %>/scripts/main.js',
+        }
+      }
     }
   });
-
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {
@@ -426,9 +446,10 @@ module.exports = function (grunt) {
     'uglify',
     'copy:dist',
     'modernizr',
+    'requirejs',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin'    
   ]);
 
   grunt.registerTask('default', [

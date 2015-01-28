@@ -1,40 +1,29 @@
 'use strict';
 
-requirejs.config({
-    'baseUrl': 'scripts',
-    'paths': {
-      'jquery': '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min',
-      'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js',
-      'TweenLite': 'http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min'
-    }
-});
+define('jquery', [], function() { return jQuery; });
 
-define( [
+define( 'main', [
     'youtube/SimpleYouTubePlayer', 
     'youtube/YouTubeDataLoader', 
     'youtube/YouTubePlaylistLoader', 
     'jquery'], 
   function(SimpleYouTubePlayer, YouTubeDataLoader, YouTubePlaylistLoader, $) {
 
-
-
     // Navigation
+  	$('#start-button').click(function(){
+  		$('body').removeClass().addClass('play');
+  	});
 
-	$('#start-button').click(function(){
-		$('body').removeClass().addClass('play');
-	});
+  	$('#who-button').click(function(){
+  		$('body').removeClass().addClass('who');
+  	});
 
-	$('#who-button').click(function(){
-		$('body').removeClass().addClass('who');
-	});
+  	$('#return-button').click(function(){
+  		$('body').removeClass().addClass('play');
+  	});
 
-	$('#return-button').click(function(){
-		$('body').removeClass().addClass('play');
-	});
-
-
-	// Gameplay
-
+    
+    // Gameplay
     var rightScore = 0;
     var wrongScore = 0;
 
@@ -104,7 +93,7 @@ define( [
 
     function onAnswerSelected(event){
 
-      var isCorrect = ($('.answer').index(this)+1) === correctAnswerNumber;
+      var isCorrect = ($('.answer').index(event.currentTarget)+1) === correctAnswerNumber;
       if( isCorrect )
       {
         rightScore++;
@@ -170,3 +159,11 @@ $( 'body' ).keydown(function( event ) {
   	$(this).removeClass().addClass( states[ currentSectionIndex ] );
   }
 });*/
+
+// set runtime paths (needed for dev only, prod files compiled with almond)
+require.config({
+    baseUrl: 'scripts'
+});
+
+// GO!
+require(['main']);
