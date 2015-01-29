@@ -15,26 +15,7 @@ define( 'main', [
     var correctAnswerNumber;
     var nextViralTimer;
 
-    var player
-
-    var twitterShareUrl = [
-          'https://twitter.com/intent/tweet?text=',
-          generateShareMessage(rightScore, rightScore+wrongScore),
-          '&url=',
-          window.location.href
-      ].join('');
-
-    var facebookShareUrl = [
-      'https://www.facebook.com/dialog/feed?',
-      'app_id=1374671149511443',
-      '&display=popup',
-      '&caption=',
-      '&link=',
-      window.location.href,
-      generateShareMessage(rightScore, rightScore+wrongScore),
-      '&redirect_uri=',
-      window.location.href
-    ].join('');
+    var player;
 
     // Navigation
   	$('#start-button').click(function(){
@@ -50,16 +31,12 @@ define( 'main', [
   	});
 
     // Sharing
-    $('#share-generic-button').click(shareFacebook);
-    $('#share-facebook-button').click(shareFacebook);
-    $('#share-twitter-button').click(shareTwitter);
-
     function shareFacebook(){
       window.FB.ui({
         method: 'feed',
         link: window.location.href,
         caption: generateShareMessage(rightScore, rightScore+wrongScore),
-      }, function(response){});
+      }, function(){});
     }
 
     function shareTwitter(){
@@ -71,6 +48,10 @@ define( 'main', [
       ].join('');
       window.open( twitterShareUrl, '_blank' );      
     }
+
+    $('#share-generic-button').click(shareFacebook);
+    $('#share-facebook-button').click(shareFacebook);
+    $('#share-twitter-button').click(shareTwitter);
 
     // Gameplay    
     player = new SimpleYouTubePlayer( 'player', 549, 333 );
