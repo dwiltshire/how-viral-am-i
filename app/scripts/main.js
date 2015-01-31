@@ -69,10 +69,7 @@ define( 'main', [
 
     var playlist = [];
     new YouTubePlaylistLoader( 'PLGCdvgeFY7e86r9Snh71NnDewn12n5Zo6', function(playlistData){
-      for( var i=0; i<playlistData.feed.entry.length; i++)
-      {        
-        playlist.push(playlistData.feed.entry[i].media$group.yt$videoid.$t);
-      }
+      playlist = playlistData.getShuffledPlaylist();
     });
 
     var correctAudio;
