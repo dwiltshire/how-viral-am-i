@@ -323,6 +323,7 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
+            'CNAME',
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
@@ -387,7 +388,7 @@ module.exports = function (grunt) {
           // https://github.com/yeoman/grunt-usemin/issues/30
           //generateSourceMaps: true,
           // required to support SourceMaps
-          // http://requirejs.org/docs/errors.html#sourcemapcomments          
+          // http://requirejs.org/docs/errors.html#sourcemapcomments
           useStrict: true,
           wrap: true,
           include: ['main'],
@@ -451,7 +452,7 @@ module.exports = function (grunt) {
     'requirejs',
     'rev',
     'usemin',
-    'htmlmin'    
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
