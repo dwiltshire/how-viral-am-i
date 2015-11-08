@@ -3,11 +3,11 @@
 define('jquery', [], function() { return jQuery; });
 
 define( 'main', [
-    'youtube/SimpleYouTubePlayer', 
-    'youtube/YouTubeDataLoader', 
-    'youtube/YouTubePlaylistLoader', 
-    'jquery'], 
-  function(SimpleYouTubePlayer, YouTubeDataLoader, YouTubePlaylistLoader, $) {
+    'youtube/SimpleYouTubePlayer',
+    'utils/ArrayUtils',
+    'jquery'],
+
+  function(SimpleYouTubePlayer, ArrayUtils, $) {
 
     var rightScore = 0;
     var wrongScore = 0;
@@ -67,9 +67,12 @@ define( 'main', [
     $(player).on( SimpleYouTubePlayer.ENDED, function(){ //loadNext(); 
     });
 
-    var playlist = [];
-    new YouTubePlaylistLoader( 'PLGCdvgeFY7e86r9Snh71NnDewn12n5Zo6', function(playlistData){
-      playlist = playlistData.getShuffledPlaylist();
+    var playlist;
+    $.ajax({
+      url: 'data/playlist.json',
+      dataType: 'json'
+    }).done(function( result ){
+      playlist = ArrayUtils.shuffle( result );
     });
 
     var correctAudio;
@@ -85,15 +88,14 @@ define( 'main', [
 
     function loadNext(){
       clearTimeout(nextViralTimer);
-      var videoId = playlist.shift();
-      new YouTubeDataLoader( videoId, function(data){
 
-        populateAnswers( data.entry.yt$statistics.viewCount );
-        enableButtons(true);
+      var videoData = playlist.shift();
 
-        player.playVideo(videoId);
-        playlist.push(videoId); // keep looping...
-      });
+      populateAnswers( videoData.views );
+      enableButtons(true);
+
+      player.playVideo( videoData.id );
+      playlist.push( videoData ); // keep looping...
     }
 
     function enableButtons(enabled){
