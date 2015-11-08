@@ -102,15 +102,15 @@ define( 'main', [
       var answerButtons = $('.answer');
       if( !enabled )
       {
-        answerButtons.off('click');
-        answerButtons.off('mouseover');
-        answerButtons.off('mouseout');
-        answerButtons.removeClass('mouse-enabled');
+        answerButtons.off('click')
+          .off('mouseover')
+          .off('mouseout')
+          .removeClass('mouse-enabled');
       } else {
-        answerButtons.click( onAnswerSelected );
-        answerButtons.mouseover( function(){ $(this).addClass('selected');} ); 
-        answerButtons.mouseout( function(){$(this).removeClass('selected');} ); 
-        answerButtons.addClass('mouse-enabled');
+        answerButtons.click( onAnswerSelected )
+          .mouseover( function(){ $(this).addClass('selected');} )
+          .mouseout( function(){$(this).removeClass('selected');} )
+          .addClass('mouse-enabled');
       }
     }
 
