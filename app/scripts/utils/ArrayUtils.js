@@ -15,7 +15,7 @@ define( 'utils/ArrayUtils', function() {
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+  };
 
   return ArrayUtils;
 
