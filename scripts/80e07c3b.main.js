@@ -525,88 +525,39 @@ define('youtube/SimpleYouTubePlayer', ['require','jquery'],function(require) {
   return SimpleYouTubePlayer;
 
 });
-define('youtube/YouTubeDataLoader', [],function() {
-    
+define( 'utils/ArrayUtils', [],function() {
+
   'use strict';
-  
-  // constructor 
-  function YouTubeDataLoader( id, callback ) {        
-    
-    var xmlhttp = new XMLHttpRequest();
-      var videoData;
-      xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-              videoData = JSON.parse(xmlhttp.responseText);
-              callback.call( this, videoData );
-          }
-      };
-      xmlhttp.open('GET', 'https://gdata.youtube.com/feeds/api/videos/' + id + '?v=2&alt=json', true);
-      xmlhttp.send();
+
+  function ArrayUtils(){
   }
 
-  return YouTubeDataLoader;
-
-});
-define('youtube/YouTubePlaylistLoader', [],function() {
-    
-  'use strict';
-  
-  var _playlist = [], _self;
-
-  // constructor 
-  function YouTubePlaylistLoader( id, callback ) {        
-    _self = this;
-    var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-              parsePlaylist( JSON.parse(xmlhttp.responseText) );
-              callback.call( this, _self );
-          }
-      };
-      xmlhttp.open('GET', 'https://gdata.youtube.com/feeds/api/playlists/' + id + '?v=2&alt=json', true);
-      xmlhttp.send();
-  }
-
-  function parsePlaylist( playlistData ){
-    for( var i=0; i<playlistData.feed.entry.length; i++)
-    {        
-      _playlist.push(playlistData.feed.entry[i].media$group.yt$videoid.$t);
-    }
-  }
-
-  function shuffle(array) {
-    var counter = array.length, temp, index;
-    while (counter > 0) {
-        index = Math.floor(Math.random() * counter);
-        counter--;
-        temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
+  ArrayUtils.shuffle = function(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
     return array;
-  }
-
-  YouTubePlaylistLoader.prototype.getPlaylist = function(){
-    return _playlist.concat();
   };
 
-  YouTubePlaylistLoader.prototype.getShuffledPlaylist = function(){
-    return shuffle(_playlist).concat();
-  };
-
-  return YouTubePlaylistLoader;
+  return ArrayUtils;
 
 });
+
 'use strict';
 
 define('jquery', [], function() { return jQuery; });
 
 define( 'main', [
-    'youtube/SimpleYouTubePlayer', 
-    'youtube/YouTubeDataLoader', 
-    'youtube/YouTubePlaylistLoader', 
-    'jquery'], 
-  function(SimpleYouTubePlayer, YouTubeDataLoader, YouTubePlaylistLoader, $) {
+    'youtube/SimpleYouTubePlayer',
+    'utils/ArrayUtils',
+    'jquery'],
+
+  function(SimpleYouTubePlayer, ArrayUtils, $) {
 
     var rightScore = 0;
     var wrongScore = 0;
@@ -666,9 +617,12 @@ define( 'main', [
     $(player).on( SimpleYouTubePlayer.ENDED, function(){ //loadNext(); 
     });
 
-    var playlist = [];
-    new YouTubePlaylistLoader( 'PLGCdvgeFY7e86r9Snh71NnDewn12n5Zo6', function(playlistData){
-      playlist = playlistData.getShuffledPlaylist();
+    var playlist;
+    $.ajax({
+      url: 'data/playlist.json',
+      dataType: 'json'
+    }).done(function( result ){
+      playlist = ArrayUtils.shuffle( result );
     });
 
     var correctAudio;
@@ -684,30 +638,29 @@ define( 'main', [
 
     function loadNext(){
       clearTimeout(nextViralTimer);
-      var videoId = playlist.shift();
-      new YouTubeDataLoader( videoId, function(data){
 
-        populateAnswers( data.entry.yt$statistics.viewCount );
-        enableButtons(true);
+      var videoData = playlist.shift();
 
-        player.playVideo(videoId);
-        playlist.push(videoId); // keep looping...
-      });
+      populateAnswers( videoData.views );
+      enableButtons(true);
+
+      player.playVideo( videoData.id );
+      playlist.push( videoData ); // keep looping...
     }
 
     function enableButtons(enabled){
       var answerButtons = $('.answer');
       if( !enabled )
       {
-        answerButtons.off('click');
-        answerButtons.off('mouseover');
-        answerButtons.off('mouseout');
-        answerButtons.removeClass('mouse-enabled');
+        answerButtons.off('click')
+          .off('mouseover')
+          .off('mouseout')
+          .removeClass('mouse-enabled');
       } else {
-        answerButtons.click( onAnswerSelected );
-        answerButtons.mouseover( function(){ $(this).addClass('selected');} ); 
-        answerButtons.mouseout( function(){$(this).removeClass('selected');} ); 
-        answerButtons.addClass('mouse-enabled');
+        answerButtons.click( onAnswerSelected )
+          .mouseover( function(){ $(this).addClass('selected');} )
+          .mouseout( function(){$(this).removeClass('selected');} )
+          .addClass('mouse-enabled');
       }
     }
 
