@@ -81,10 +81,10 @@ h4 {
 .section-content {
 	position: absolute;
 	width: 100%;
-	height: 665px;
+	height: 740px;
 	overflow: hidden;
 	top: 50%;
-	margin-top: -322px;
+	margin-top: -375px;
 }
 
 /** INTRO **/
@@ -98,8 +98,8 @@ h4 {
 	}
 }
 
-#intro-title {	
-	
+#intro-title {
+
 	color: $intro-main-color;
 
 	@include speech-bubble( url("../images/sections/intro-header-bubble-tail.png"), 142px, 147px, -10px, -50px );
@@ -117,7 +117,7 @@ h4 {
 	}
 }
 
-#instructions {		
+#instructions {
 	position: absolute;
 	width: 100%;
 	@include vertical-align();
@@ -136,7 +136,7 @@ h4 {
 /** PLAY **/
 
 #play {
-	background-color: $play-main-color;	
+	background-color: $play-main-color;
 	height:100vh + ($sawtooth-height*2);
 	&:before {
 		content: " ";
@@ -151,7 +151,7 @@ h4 {
 	}
 }
 
-#play-title {		
+#play-title {
 	color: $play-main-color;
 	@include speech-bubble( url("../images/sections/play-header-bubbletail.png"), 90px, 83px, 72px, -62px );
 }
@@ -161,7 +161,7 @@ h4 {
 	margin: 20px auto;
 }
 
-#video-container {	
+#video-container {
 	width: 651px;
 	height: 454px;
 	display: inline-block;
@@ -201,7 +201,7 @@ h4 {
 		position: relative;
 
 		width: 95px;
-		height: 80px;		
+		height: 80px;
 		margin: 17px 16px;
 
 		.counter {
@@ -211,18 +211,18 @@ h4 {
 
 			font-size: 55pt;
 			font-weight: 900;
-			line-height: 1.2;			
+			line-height: 1.2;
 			letter-spacing: 3px;
 			text-shadow: 0px 0px 10px $play-bold-color;
 		}
 
-		.label {			
+		.label {
 			position: absolute;
 			width: 100%;
 			bottom: 0;
-			
-			font-weight: 700;	
-			font-size: 14pt;		
+
+			font-weight: 700;
+			font-size: 14pt;
 		}
 
 	}
@@ -237,7 +237,7 @@ h4 {
 
 	ul {
 		list-style: none;
-		padding: 0;	
+		padding: 0;
 	}
 
 	li {
@@ -252,6 +252,7 @@ h4 {
 		width: 100%;
 		height: 43px;
 
+    font-family: 'Homenaje', sans-serif;
 		font-size: 20pt;
 		text-align: left;
 
@@ -279,8 +280,8 @@ h4 {
 
 			text-align: center;
 			line-height: 34px;
-			
-			@include border-radius(20px);		
+
+			@include border-radius(20px);
 		}
 
 		&.correct {
@@ -304,10 +305,10 @@ h4 {
 }
 
 #next-button {
-	
+
 	@include frame-button( $play-main-color, #FFFFFF, $play-secondary-color, 12pt );
 	@include icon-button( url("../images/components/arrowicon-yellow-right.png"), 26px, 28px, 5px, 2px );
-	
+
 	span {
 		display: block;
 		height: 54px;
@@ -317,7 +318,7 @@ h4 {
 	}
 
 	margin: 0 25px;
-	
+
 }
 
 #who-button {
@@ -325,9 +326,23 @@ h4 {
 	z-index: 10;
 
 	margin: 10px 0;
-	color: $play-secondary-color;		
+	color: $play-secondary-color;
 
 	@include icon-button( url("../images/components/arrowicon-yellow-up.png"), 13px, 11px, 5px, 2px );
+}
+
+.share-panel {
+  position: absolute;
+  bottom: 55px;
+  width: 100%;
+  text-align: center;
+
+  .share-cta {
+    display: inline-block;
+    font-size: 32pt;
+    position: relative;
+    top: -4px;
+  }
 }
 
 .share-button {
@@ -352,7 +367,7 @@ h4 {
 		}
 	}
 
-	&.twitter {		
+	&.twitter {
 		width: 50px;
 	}
 	&.facebook {
@@ -376,7 +391,7 @@ h4 {
 	z-index: 10;
 
 	margin: 10px 0;
-	color: $who-secondary-color;		
+	color: $who-secondary-color;
 
 	@include icon-button( url("../images/components/arrowicon-red-up.png"), 13px, 11px, 5px, 2px );
 }
@@ -400,7 +415,7 @@ h4 {
 
 	width: 252px;
 	height: 305px;
-	padding: 20px;	
+	padding: 20px;
 
 	img {
 		width: 252px;
@@ -420,7 +435,7 @@ h4 {
 	.details {
 		margin-top: 20px;
 
-		font-size: 8pt;		
+		font-size: 8pt;
 		text-transform: none;
 
 		p {
@@ -441,7 +456,7 @@ h4 {
 			text-decoration: underline;
 		}
 
-	}	
+	}
 
 }
 
