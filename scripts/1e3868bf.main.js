@@ -570,6 +570,7 @@ define( 'main', [
     // Navigation
   	$('#start-button').click(function(){
   		$('body').removeClass().addClass('play');
+      loadNext();
   	});
 
   	$('#who-button').click(function(){
