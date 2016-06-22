@@ -4,6 +4,31 @@
 
 /** STRUCTURE **/
 
+#mobile {
+  display: none;
+
+  background-color: $intro-main-color;
+
+  padding: 1em 0.2em;
+  font-size: 18pt;
+  h1 {
+    font-size: 2em;
+  }
+  p {
+    font-size: 1em;
+    padding: 1em;
+    font-weight: normal;
+  }
+}
+@media (max-width: 1000px) {
+  section { display: none; }
+  #mobile {
+    display: block;
+  }
+}
+
+/** STRUCTURE **/
+
 body {
 	background: #000000;
 	font-family: 'Titillium Web', "Helvetica Neue", Helvetica, Arial, sans-serif;
